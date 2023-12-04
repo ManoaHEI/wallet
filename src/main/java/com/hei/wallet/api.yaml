@@ -1,0 +1,158 @@
+openapi: 3.0.0
+info:
+  title: Wallet Management by STD22044 and STD22056
+  version: 1.0.1
+tags:
+  - name: Accounts
+  - name: Currencies
+  - name: Transactions
+paths:
+  /accounts:
+    get:
+      tags:
+        - Accounts
+      summary: Get all accounts
+      responses:
+        '200':
+          description: Successful response
+    post:
+      tags:
+        - Accounts
+      summary: Create a new account
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Account'
+      responses:
+        '201':
+          description: Account created successfully
+    put:
+      tags:
+        - Accounts
+      summary: Update an existing account
+      parameters:
+        - name: id_account
+          in: path
+          required: true
+          description: ID of the account to update
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Account'
+      responses:
+        '200':
+          description: Account updated successfully
+
+    delete:
+      tags:
+        - Accounts
+      summary: Delete an existing account
+      parameters:
+        - name: id_account
+          in: path
+          required: true
+          description: ID of the account to delete
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Account deleted successfully
+
+  /currencies:
+    get:
+      tags:
+        - Currencies
+      summary: Get all currencies
+      responses:
+        '200':
+          description: Successful response
+    post:
+      tags:
+        - Currencies
+      summary: Create a new currency
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Currency'
+      responses:
+        '201':
+          description: Currency created successfully
+
+  /transactions:
+    get:
+      tags:
+        - Transactions
+      summary: Get all transactions
+      responses:
+        '200':
+          description: Successful response
+    post:
+      tags:
+        - Transactions
+      summary: Create a new transaction
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Transaction'
+      responses:
+        '201':
+          description: Transaction created successfully
+
+components:
+  schemas:
+    Account:
+      type: object
+      properties:
+        balance:
+          type: number
+          format: float
+        id_currency:
+          type: integer
+          description: ID of the currency for the account
+      required:
+        - balance
+        - id_currency
+
+    Currency:
+      type: object
+      properties:
+        name:
+          type: string
+          maxLength: 20
+        value:
+          type: number
+          format: float
+      required:
+        - name
+        - value
+
+    Transaction:
+      type: object
+      properties:
+        transaction:
+          type: string
+          enum: ['receive', 'send']
+        amount:
+          type: number
+          format: float
+        id_receiver:
+          type: integer
+          description: ID of the receiver account
+        id_receiver_currency:
+          type: integer
+          description: ID of the currency for the receiver account
+        id_sender:
+          type: integer
+          description: ID of the sender account
+        id_sender_currency:
+          type: integer
