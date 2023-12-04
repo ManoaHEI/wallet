@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: Wallet Management by STD22044 and STD22056
-  version: 1.0.0
+  version: 1.0.1
 tags:
   - name: Accounts
   - name: Currencies
@@ -24,17 +24,7 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                balance:
-                  type: number
-                  format: float
-                id_currency:
-                  type: integer
-                  description: ID of the currency for the account
-              required:
-                - balance
-                - id_currency
+              $ref: '#/components/schemas/Account'
       responses:
         '201':
           description: Account created successfully
@@ -54,17 +44,7 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                balance:
-                  type: number
-                  format: float
-                id_currency:
-                  type: integer
-                  description: ID of the currency for the account
-              required:
-                - balance
-                - id_currency
+              $ref: '#/components/schemas/Account'
       responses:
         '200':
           description: Account updated successfully
@@ -101,17 +81,7 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                name:
-                  type: string
-                  maxLength: 20
-                value:
-                  type: number
-                  format: float
-              required:
-                - name
-                - value
+              $ref: '#/components/schemas/Currency'
       responses:
         '201':
           description: Currency created successfully
@@ -133,34 +103,56 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                transaction:
-                  type: string
-                  enum: ['receive', 'send']
-                amount:
-                  type: number
-                  format: float
-                id_receiver:
-                  type: integer
-                  description: ID of the receiver account
-                id_receiver_currency:
-                  type: integer
-                  description: ID of the currency for the receiver account
-                id_sender:
-                  type: integer
-                  description: ID of the sender account
-                id_sender_currency:
-                  type: integer
-                  description: ID of the currency for the sender account
-              required:
-                - transaction
-                - amount
-                - id_receiver
-                - id_receiver_currency
-                - id_sender
-                - id_sender_currency
+              $ref: '#/components/schemas/Transaction'
       responses:
         '201':
           description: Transaction created successfully
 
+components:
+  schemas:
+    Account:
+      type: object
+      properties:
+        balance:
+          type: number
+          format: float
+        id_currency:
+          type: integer
+          description: ID of the currency for the account
+      required:
+        - balance
+        - id_currency
+
+    Currency:
+      type: object
+      properties:
+        name:
+          type: string
+          maxLength: 20
+        value:
+          type: number
+          format: float
+      required:
+        - name
+        - value
+
+    Transaction:
+      type: object
+      properties:
+        transaction:
+          type: string
+          enum: ['receive', 'send']
+        amount:
+          type: number
+          format: float
+        id_receiver:
+          type: integer
+          description: ID of the receiver account
+        id_receiver_currency:
+          type: integer
+          description: ID of the currency for the receiver account
+        id_sender:
+          type: integer
+          description: ID of the sender account
+        id_sender_currency:
+          type: integer
