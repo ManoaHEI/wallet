@@ -1,9 +1,166 @@
-openapi: 3.0.3
+openapi: 3.0.0
 info:
-  title: $Title$
-  description: $Title$
+  title: Wallet Management by STD22044 and STD22056
   version: 1.0.0
-servers:
-  - url: '$https$'
+tags:
+  - name: Accounts
+  - name: Currencies
+  - name: Transactions
 paths:
-  $END$
+  /accounts:
+    get:
+      tags:
+        - Accounts
+      summary: Get all accounts
+      responses:
+        '200':
+          description: Successful response
+    post:
+      tags:
+        - Accounts
+      summary: Create a new account
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                balance:
+                  type: number
+                  format: float
+                id_currency:
+                  type: integer
+                  description: ID of the currency for the account
+              required:
+                - balance
+                - id_currency
+      responses:
+        '201':
+          description: Account created successfully
+    put:
+      tags:
+        - Accounts
+      summary: Update an existing account
+      parameters:
+        - name: id_account
+          in: path
+          required: true
+          description: ID of the account to update
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                balance:
+                  type: number
+                  format: float
+                id_currency:
+                  type: integer
+                  description: ID of the currency for the account
+              required:
+                - balance
+                - id_currency
+      responses:
+        '200':
+          description: Account updated successfully
+
+    delete:
+      tags:
+        - Accounts
+      summary: Delete an existing account
+      parameters:
+        - name: id_account
+          in: path
+          required: true
+          description: ID of the account to delete
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Account deleted successfully
+
+  /currencies:
+    get:
+      tags:
+        - Currencies
+      summary: Get all currencies
+      responses:
+        '200':
+          description: Successful response
+    post:
+      tags:
+        - Currencies
+      summary: Create a new currency
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  maxLength: 20
+                value:
+                  type: number
+                  format: float
+              required:
+                - name
+                - value
+      responses:
+        '201':
+          description: Currency created successfully
+
+  /transactions:
+    get:
+      tags:
+        - Transactions
+      summary: Get all transactions
+      responses:
+        '200':
+          description: Successful response
+    post:
+      tags:
+        - Transactions
+      summary: Create a new transaction
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                transaction:
+                  type: string
+                  enum: ['receive', 'send']
+                amount:
+                  type: number
+                  format: float
+                id_receiver:
+                  type: integer
+                  description: ID of the receiver account
+                id_receiver_currency:
+                  type: integer
+                  description: ID of the currency for the receiver account
+                id_sender:
+                  type: integer
+                  description: ID of the sender account
+                id_sender_currency:
+                  type: integer
+                  description: ID of the currency for the sender account
+              required:
+                - transaction
+                - amount
+                - id_receiver
+                - id_receiver_currency
+                - id_sender
+                - id_sender_currency
+      responses:
+        '201':
+          description: Transaction created successfully
+
