@@ -1,13 +1,14 @@
 package com.hei.wallet.repository;
 
 import com.hei.wallet.models.Account;
+import com.hei.wallet.models.Currency;
+
+import java.util.List;
 
 public interface AccountRepository {
 
-    Account findByBalance(float balance);
+    List<Account> findByBalance(float balance);
 
-    Account findByCurrencyId(int id);
-
-    Account findByCurrencyName(String name);
+    List<Account> findByCurrencyId(Currency currency);
 
 }
