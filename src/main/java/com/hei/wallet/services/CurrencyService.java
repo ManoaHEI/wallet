@@ -4,7 +4,6 @@ import com.hei.wallet.database.DbConnection;
 import com.hei.wallet.models.Currency;
 import com.hei.wallet.repository.CurrencyRepository;
 import com.hei.wallet.repository.CrudOperation;
-
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -77,16 +76,60 @@ public class CurrencyService implements CrudOperation<Currency>, CurrencyReposit
         return null;
     }
     @Override
-    public Currency deleteById(int id) {
-        return null;
+    public String deleteById(int id) {
+
+        String sql = "IF EXISTS (SELECT * FROM currency WHERE id_currency = " + id + ") DELETE FROM currency WHERE id_currency = " + id + ";";
+
+        try {
+            Connection connection = DbConnection.getConnection();
+            Statement statement = connection.createStatement();
+            statement.executeUpdate(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return "Currency with id: " + id + " has been deleted successfully.";
     }
 
     @Override
     public Currency findCurrencyByName(String name) {
-        return null;
+        Currency currency = null;
+
+        try {
+            Connection connection = DbConnection.getConnection();
+            String sql = "SELECT * FROM currency WHERE name = '" + name + "';";
+
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(sql);
+
+            if (resultSet.next()) {
+                currency = mapCurrency(resultSet);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return currency;
     }
+
     @Override
     public Currency deleteCurrencyByName(String name) {
-        return null;
+        Currency currency = findCurrencyByName(name);
+
+        if (currency != null) {
+            String sql = "DELETE FROM currency WHERE name = '" + name + "';";
+
+            try {
+                Connection connection = DbConnection.getConnection();
+                Statement statement = connection.createStatement();
+                statement.executeUpdate(sql);
+
+                System.out.println("Currency with name: " + name + " has been deleted successfully.");
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return currency;
     }
 }
