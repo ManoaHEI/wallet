@@ -97,7 +97,7 @@ public class TransactionService implements CrudOperation<Transaction>, Transacti
     }
 
     @Override
-    public Transaction deleteById(int id) {
+    public String deleteById(int id) {
         return null;
     }
 
