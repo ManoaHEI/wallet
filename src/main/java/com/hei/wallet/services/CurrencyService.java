@@ -77,7 +77,7 @@ public class CurrencyService implements CrudOperation<Currency>, CurrencyReposit
         return null;
     }
     @Override
-    public Currency deleteById(int id) {
+    public String deleteById(int id) {
         return null;
     }
 
