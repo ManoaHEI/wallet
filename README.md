@@ -1,5 +1,5 @@
-# wallet
+# WALLET
 
 Collaborators:
-  *RANDRIANARIJAONA Manoa Lahatra 
-  *RAKOTO HARISATA Andinirina
+  - RANDRIANARIJAONA Manoa Lahatra 
+  - RAKOTO HARISATA Andinirina
