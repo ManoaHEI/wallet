@@ -14,4 +14,6 @@ public interface AccountRepository {
     List<Account> findByCurrencyId(Currency currency);
 
     List<Account> findById(int idReceiver);
+
+    List<Account> findByCurrencyId(int currencyId);
 }
