@@ -66,13 +66,18 @@ public class AccountService implements CrudOperation<Account>, AccountRepository
     }
 
     @Override
+    public List<Account> findByCurrencyId(int currencyId) {
+        return null;
+    }
+
+    @Override
     public List<Account> saveAll(List<Account> toSave) {
         StringBuilder sql = new StringBuilder("INSERT INTO account(balance, id_currency) VALUES(");
         for (int i = 0; i < toSave.size(); i++) {
             sql
                     .append(toSave.get(i).getBalance())
                     .append(",")
-                    .append(toSave.get(i).getCurrency().getId_currency())
+                    .append(toSave.get(i).getCurrency().getIdCurrency())
                     .append(")");
             if (i != toSave.size() - 1) {
                 sql.append(",(");
@@ -99,7 +104,10 @@ public class AccountService implements CrudOperation<Account>, AccountRepository
     @Override
     public Account save(Account toSave) {
 
-        String sql = "INSERT INTO account(balance, id_currency) VALUES(" + toSave.getBalance() + ", " + toSave.getCurrency().getId_currency() + ");";
+        String sql = "INSERT INTO account(id_account, balance, id_currency) " +
+                     "VALUES(" + toSave.getIdAccount() + "," + toSave.getBalance() + ", " + toSave.getCurrency().getIdCurrency() + ")" +
+                     "ON CONFLICT (id_account)" +
+                     "DO UPDATE SET balance = EXCLUDED.balance, id_currency = EXCLUDE.id_currency;";
 
         try {
             Connection connection = DbConnection.getConnection();
@@ -107,30 +115,13 @@ public class AccountService implements CrudOperation<Account>, AccountRepository
             Statement statement = connection.createStatement();
             statement.executeUpdate(sql);
 
-            System.out.println("Account successfully deleted.");
+            System.out.println("Account successfully saved.");
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
         return toSave;
-    }
-
-    @Override
-    public Account update(int id, Account toUpdate) {
-        String sql = "UPDATE account SET balance = " + toUpdate.getBalance() + " WHERE id_account = " + id + ";";
-
-        try {
-            Connection connection = DbConnection.getConnection();
-
-            Statement statement = connection.createStatement();
-            statement.executeUpdate(sql);
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return toUpdate;
     }
 
     @Override
@@ -175,7 +166,7 @@ public class AccountService implements CrudOperation<Account>, AccountRepository
 
         try {
             Connection connection = DbConnection.getConnection();
-            String sql = "SELECT * FROM account WHERE id_account = " + currency.getId_currency() + ";";
+            String sql = "SELECT * FROM account WHERE id_account = " + currency.getIdCurrency() + ";";
 
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(sql);

@@ -67,14 +67,12 @@ public class CurrencyService implements CrudOperation<Currency>, CurrencyReposit
     public List<Currency> saveAll(List<Currency> toSave) {
         return null;
     }
+
     @Override
     public Currency save(Currency toSave) {
         return null;
     }
-    @Override
-    public Currency update(int id, Currency toUpdate) {
-        return null;
-    }
+
     @Override
     public String deleteById(int id) {
 
