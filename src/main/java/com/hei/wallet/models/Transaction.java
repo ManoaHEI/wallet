@@ -11,7 +11,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Transaction {
 
-    private int id_transaction;
+    private int idTransaction;
 
     private TransactionTypes type;
 
@@ -19,10 +19,10 @@ public class Transaction {
 
     private Account receiver;
 
-    private Currency receiver_currency;
+    private Currency receiverCurrency;
 
     private Account sender;
 
-    private Currency sender_currency;
+    private Currency senderCurrency;
 
 }

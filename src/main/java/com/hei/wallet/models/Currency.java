@@ -11,7 +11,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Currency {
 
-    private int id_currency;
+    private int idCurrency;
 
     private String name;
 

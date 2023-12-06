@@ -11,7 +11,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class Account {
 
-    private int id_account;
+    private int idAccount;
 
     private float balance;
 

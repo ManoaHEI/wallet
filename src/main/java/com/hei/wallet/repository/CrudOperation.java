@@ -12,8 +12,6 @@ public interface CrudOperation<T> {
 
     T save(T toSave);
 
-    T update(int id, T toUpdate);
-
     String deleteById(int id);
 
 }
