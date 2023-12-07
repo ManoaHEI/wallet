@@ -66,6 +66,11 @@ public class AccountService implements CrudOperation<Account>, AccountRepository
     }
 
     @Override
+    public List<Account> findByCurrencyId(int currencyId) {
+        return null;
+    }
+
+    @Override
     public List<Account> saveAll(List<Account> toSave) {
         StringBuilder sql = new StringBuilder("INSERT INTO account(balance, id_currency) VALUES(");
         for (int i = 0; i < toSave.size(); i++) {

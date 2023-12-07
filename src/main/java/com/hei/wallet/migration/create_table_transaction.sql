@@ -1,9 +1,8 @@
-CREATE TABLE IF NOT EXISTS transaction (
-    id_transaction SERIAL PRIMARY KEY,
-    type transaction_type NOT NULL,
-    amount FLOAT NOT NULL,
-    id_receiver INT REFERENCES account(id_account),
-    id_receiver_currency INT REFERENCES currency(id_currency),
-    id_sender INT REFERENCES account(id_account),
-    id_sender_currency INT REFERENCES currency(id_currency)
+CREATE TABLE IF NOT EXISTS Transaction (
+    id SERIAL PRIMARY KEY,
+    label VARCHAR(255) NOT NULL,
+    amount DECIMAL(15, 2) NOT NULL,
+    date_time TIMESTAMP NOT NULL,
+    transaction_type VARCHAR(10) CHECK (transaction_type IN ('Debit', 'Credit')),
+    account_id INT REFERENCES Account(id)
 );

@@ -1,1 +1,0 @@
-CREATE TYPE transaction_type AS ENUM('RECEIVE', 'SEND');
