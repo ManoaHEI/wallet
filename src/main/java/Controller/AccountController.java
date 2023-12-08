@@ -1,6 +1,6 @@
 package Controller;
 
-import com.hei.wallet.models.Account;
+import com.hei.wallet.models.entities.Account;
 import com.hei.wallet.services.AccountService;
 import org.springframework.web.bind.annotation.*;
 

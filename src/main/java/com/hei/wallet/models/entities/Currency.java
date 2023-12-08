@@ -1,20 +1,22 @@
-package com.hei.wallet.models;
+package com.hei.wallet.models.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.math.BigDecimal;
+
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Account {
+public class Currency {
 
-    private int idAccount;
+    private int idCurrency;
 
-    private float balance;
+    private String name;
 
-    private Currency currency;
+    private String code;
 
 }

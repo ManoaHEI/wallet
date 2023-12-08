@@ -1,6 +1,6 @@
 package com.hei.wallet.repository;
 
-import com.hei.wallet.models.Currency;
+import com.hei.wallet.models.entities.Currency;
 
 import java.util.List;
 

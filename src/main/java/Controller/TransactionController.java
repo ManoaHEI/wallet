@@ -1,7 +1,6 @@
 package Controller;
 
-import com.hei.wallet.models.Transaction;
-import com.hei.wallet.models.TransactionTypes;
+import com.hei.wallet.models.entities.Transaction;
 import com.hei.wallet.services.TransactionService;
 import org.springframework.web.bind.annotation.*;
 

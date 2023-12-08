@@ -1,6 +1,6 @@
 package Controller;
 
-import com.hei.wallet.models.Currency;
+import com.hei.wallet.models.entities.Currency;
 import com.hei.wallet.services.CurrencyService;
 import org.springframework.web.bind.annotation.*;
 

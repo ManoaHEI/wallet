@@ -1,7 +1,6 @@
 package com.hei.wallet.repository;
 
-import com.hei.wallet.models.Transaction;
-import com.hei.wallet.models.TransactionTypes;
+import com.hei.wallet.models.entities.Transaction;
 
 public interface TransactionRepository {
 

@@ -1,4 +1,4 @@
-package com.hei.wallet.models;
+package com.hei.wallet.models.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,12 +9,10 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Currency {
+public class AccountTransaction {
 
-    private int idCurrency;
+    private Account account;
 
-    private String name;
-
-    private float value;
+    private Transaction transaction;
 
 }

@@ -1,10 +1,9 @@
 package com.hei.wallet.services;
 
 import com.hei.wallet.database.DbConnection;
-import com.hei.wallet.models.Account;
-import com.hei.wallet.models.Currency;
-import com.hei.wallet.models.Transaction;
-import com.hei.wallet.models.TransactionTypes;
+import com.hei.wallet.models.entities.Account;
+import com.hei.wallet.models.entities.Currency;
+import com.hei.wallet.models.entities.Transaction;
 import com.hei.wallet.repository.AccountRepository;
 import com.hei.wallet.repository.CurrencyRepository;
 import com.hei.wallet.repository.TransactionRepository;
@@ -22,8 +21,8 @@ public class TransactionService implements CrudOperation<Transaction>, Transacti
     private Transaction mapTransaction(ResultSet resultSet) throws SQLException {
         return new Transaction(
                 resultSet.getInt("id_transaction"),
-                TransactionTypes.valueOf(resultSet.getString("transaction")),
-                resultSet.getFloat("amount"),
+                TransactionTypes.valueOf(resultSet.getString("type")),
+                resultSet.getBigDecimal("amount"),
                 (Account) accountRepository.findById(resultSet.getInt("id_receiver")),
                 (Currency) currencyRepository.findById(resultSet.getInt("id_receiver_currency")),
                 (Account) accountRepository.findById(resultSet.getInt("id_sender")),

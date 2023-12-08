@@ -1,7 +1,7 @@
 package com.hei.wallet.services;
 
 import com.hei.wallet.database.DbConnection;
-import com.hei.wallet.models.Currency;
+import com.hei.wallet.models.entities.Currency;
 import com.hei.wallet.repository.CurrencyRepository;
 import com.hei.wallet.repository.CrudOperation;
 import java.sql.Connection;
@@ -17,7 +17,7 @@ public class CurrencyService implements CrudOperation<Currency>, CurrencyReposit
         return new Currency(
                 resultSet.getInt("id_currency"),
                 resultSet.getString("name"),
-                resultSet.getFloat("value")
+                resultSet.getBigDecimal("value")
         );
     }
 

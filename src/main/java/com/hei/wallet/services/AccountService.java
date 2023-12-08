@@ -1,8 +1,8 @@
 package com.hei.wallet.services;
 
 import com.hei.wallet.database.DbConnection;
-import com.hei.wallet.models.Account;
-import com.hei.wallet.models.Currency;
+import com.hei.wallet.models.entities.Account;
+import com.hei.wallet.models.entities.Currency;
 import com.hei.wallet.repository.AccountRepository;
 import com.hei.wallet.repository.CrudOperation;
 
@@ -18,7 +18,7 @@ public class AccountService implements CrudOperation<Account>, AccountRepository
     private Account mapAccount(ResultSet resultSet) throws SQLException {
         return new Account(
                 resultSet.getInt("id_account"),
-                resultSet.getFloat("balance"),
+                resultSet.getBigDecimal("balance"),
                 (Currency) resultSet.getObject("currency")
         );
     }
