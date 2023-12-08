@@ -5,5 +5,5 @@ CREATE TABLE IF NOT EXISTS transaction (
     label VARCHAR(255) NOT NULL,
     amount DECIMAL NOT NULL,
     transaction_date TIMESTAMP NOT NULL,
-    transaction_type VARCHAR CHECK ( transaction_type IN ('DEBIT', 'CREDIT') )
+    transaction_type TRANSACTION_TYPE CHECK ( transaction_type IN ('DEBIT', 'CREDIT') )
 );
