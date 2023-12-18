@@ -1,8 +1,11 @@
-CREATE TABLE IF NOT EXISTS Account (
-    id SERIAL PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
-    balance_amount DECIMAL(15, 2) NOT NULL,
-    balance_last_update TIMESTAMP NOT NULL,
-    currency_id INT REFERENCES Currency(id),
-    type VARCHAR(20) CHECK (type IN ('Bank', 'Cash', 'Mobile Money'))
+CREATE TYPE ACCOUNT_TYPE AS ENUM('CURRENT_ACCOUNT', 'SAVING_ACCOUNT');
+CREATE TYPE ACCOUNT_NAME AS ENUM('BANK', 'CASH', 'MOBILE_MONEY');
+
+CREATE TABLE IF NOT EXISTS account (
+    id_account SERIAL PRIMARY KEY,
+    name ACCOUNT_TYPE NOT NULL,
+    balance DECIMAL NOT NULL,
+    last_update_time TIMESTAMP NOT NULL,
+    type ACCOUNT_NAME NOT NULL,
+    id_currency INT REFERENCES currency(id_currency)
 );
