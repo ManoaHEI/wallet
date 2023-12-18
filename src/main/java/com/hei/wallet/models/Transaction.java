@@ -5,24 +5,31 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.util.Date;
+
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Transaction {
+ public class Transaction {
+        private Long id;
+        private String label;
+        private BigDecimal amount;
+        private Date dateTime;
+        private String type;
+        private Long accountId;
+        private TransactionCategory category;
 
-    private int id_transaction;
+    public void setTransactionDate(Date transactionDate) {
+    }
 
-    private TransactionTypes type;
+    public LocalDateTime getTransaction_date() {
+        return null;
+    }
 
-    private float amount;
-
-    private Account receiver;
-
-    private Currency receiver_currency;
-
-    private Account sender;
-
-    private Currency sender_currency;
-
+    public String getTransaction_type() {
+        return null;
+    }
 }

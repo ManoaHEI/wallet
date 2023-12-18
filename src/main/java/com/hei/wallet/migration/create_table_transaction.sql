@@ -1,8 +1,10 @@
-CREATE TABLE IF NOT EXISTS Transaction (
+CREATE TABLE IF NOT EXISTS transaction (
     id SERIAL PRIMARY KEY,
     label VARCHAR(255) NOT NULL,
-    amount DECIMAL(15, 2) NOT NULL,
-    date_time TIMESTAMP NOT NULL,
-    transaction_type VARCHAR(10) CHECK (transaction_type IN ('Debit', 'Credit')),
-    account_id INT REFERENCES Account(id)
+    amount DECIMAL(10, 2) NOT NULL,
+    transaction_date TIMESTAMP NOT NULL,
+    transaction_type VARCHAR(10) NOT NULL,
+    account_id BIGINT NOT NULL,
+    category_id BIGINT,
+    FOREIGN KEY (category_id) REFERENCES transaction_category(id)
 );

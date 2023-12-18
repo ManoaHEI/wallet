@@ -1,20 +1,12 @@
 package com.hei.wallet.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.Data;
 
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
+
+@Data
 public class Currency {
-
-    private int id_currency;
-
+    private Long id;
     private String name;
-
-    private float value;
+    private String code;
 
 }

@@ -1,20 +1,23 @@
 package com.hei.wallet.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+import java.math.BigDecimal;
+import java.util.Date;
+import java.util.List;
 
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
+@Data
 public class Account {
-
-    private int id_account;
-
-    private float balance;
-
+    private Long id;
+    private String name;
+    private BigDecimal balanceAmount;
+    private List<Transaction> transactions;
     private Currency currency;
+    private String type;
 
+    public void setBalanceLastUpdate(Date balanceLastUpdate) {
+    }
+
+    public Date getBalanceLastUpdate() {
+        return null;
+    }
 }
